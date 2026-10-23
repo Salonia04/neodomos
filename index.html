@@ -1,639 +1,151 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>NEODOMOS | Domos modulares</title>
-
-    <!-- Ícono de la pestaña del navegador -->
-    <link rel="icon" href="img/logo-monograma.png">
-
-    <!-- Tipografía -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- Estilos CSS -->
+    <title>NEODOMOS | Domos modulares inteligentes y sustentables</title>
+    <meta name="description" content="Estructuras modulares de impacto ambiental cero. Ingeniería de precisión para viviendas, turismo u oficinas de despliegue ultra-rápido.">
+    <link rel="icon" href="img/logo-blanco.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
 
-    <!-- ============ NAVBAR ============ -->
-    <header>
+    <!-- Navbar y footer se generan desde domos.js -->
+    <header id="site-header"></header>
 
-        <!-- Logo -->
-        <a class="logo" href="#/">
-            <img
-                src="img/logo-solo.webp"
-                alt="NEODOMOS"
-                onerror="this.outerHTML='<b>NEODOMOS</b>'"
-            >
-        </a>
-
-        <!-- Botón del menú para celulares -->
-        <button
-            class="burger"
-            onclick="document.querySelector('nav').classList.toggle('open')"
-        >
-            ☰
-        </button>
-
-        <!-- Navegación -->
-        <nav>
-            <a class="l" data-p="home" href="#/">Inicio</a>
-
-            <a
-                class="l lock"
-                title="Próximamente"
-                onclick="return false"
-            >
-                Tour Virtual 🔒
-            </a>
-
-            <a class="l" href="contacto.html">
-                Contacto
-            </a>
-
-            <a
-                class="btn btn-v"
-                id="reservar"
-                target="_blank"
-            >
-                Reservar ahora
-            </a>
-        </nav>
-
-    </header>
-
-
-    <!-- ============ PÁGINA: INICIO ============ -->
     <main class="page on" id="home">
 
-        <!-- Portada principal -->
+        <!-- ============ PORTADA ============ -->
         <div class="hero">
-
-            <!-- Fondos que se alternan al cambiar de domo -->
             <div class="bg" id="bg0"></div>
             <div class="bg" id="bg1"></div>
 
-            <!-- Texto principal -->
             <div class="txt">
-
-                <h1>
-                    Vive la experiencia<br>
-                    del domo
-                </h1>
-
-                <!-- Resumen dinámico del domo seleccionado -->
+                <!-- CAMBIAR: titular principal -->
+                <h1>Arquitectura del futuro, hoy.<span>Domos modulares inteligentes</span></h1>
                 <p id="resumen"></p>
-
-                <!-- Botones de acción -->
                 <div class="acts">
-                    <a class="btn btn-b" id="mas">
-                        MÁS INFO →
-                    </a>
-
-                    <a
-                        class="btn btn-o"
-                        id="consultar"
-                        target="_blank"
-                    >
-                        CONSULTAR
-                    </a>
+                    <!-- Un solo botón principal + un link secundario -->
+                    <a class="btn btn-v" id="consultar" target="_blank" rel="noopener">Cotizar mi domo</a>
+                    <a class="link-sec" id="mas">Ver especificaciones →</a>
                 </div>
-
             </div>
 
-            <!-- Menú de domos generado desde NODOS -->
             <div class="menu" id="menu"></div>
 
-            <!-- Aviso del tour virtual -->
-            <div class="soon">
-                <i></i>
-                Tour 3D · Próximamente
-            </div>
-
-            <!-- Acceso a Instagram -->
-            <a
-                class="insta"
-                id="insta"
-                target="_blank"
-                title="Instagram"
-            >
-                <svg
-                    viewBox="0 0 24 24"
-                    width="26"
-                    height="26"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                >
-                    <rect
-                        x="3"
-                        y="3"
-                        width="18"
-                        height="18"
-                        rx="5"
-                    />
-
-                    <circle
-                        cx="12"
-                        cy="12"
-                        r="4"
-                    />
-
-                    <circle
-                        cx="17.5"
-                        cy="6.5"
-                        r="1"
-                        fill="currentColor"
-                    />
-                </svg>
-            </a>
-
+            <div class="soon"><i></i> Tour 3D · Próximamente</div>
+            <a class="insta" id="insta" target="_blank" rel="noopener" title="Instagram" data-ico="instagram"></a>
         </div>
 
-
-        <!-- ===== SECCIÓN: POR QUÉ ELEGIR NEODOMOS ===== -->
+        <!-- ============ POR QUÉ NEODOMOS ============ -->
         <section>
-
             <div class="t">
-                <h2>
-                    Por qué elegir <em>NEODOMOS</em>
-                </h2>
-
-                <p>
-                    Espacios modulares pensados para integrarse
-                    con la naturaleza sin resignar confort.
-                </p>
+                <h2>Por qué elegir <em>NEODOMOS</em></h2>
+                <p>Estructuras modulares de impacto ambiental cero. Ingeniería de precisión para viviendas, turismo u oficinas.</p>
             </div>
-
             <div class="cards">
-
-                <div class="card">
-                    <i>🌲</i>
-                    <h3>Integración natural</h3>
-                    <p>
-                        Diseño compacto que se adapta al paisaje
-                        y respeta el entorno.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <i>⚡</i>
-                    <h3>Montaje rápido</h3>
-                    <p>
-                        Estructura modular lista para instalar
-                        en poco tiempo.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <i>🏠</i>
-                    <h3>Múltiples usos</h3>
-                    <p>
-                        Habitacional, oficina, gastronomía y más,
-                        en un mismo concepto.
-                    </p>
-                </div>
-
+                <div class="card"><i data-ico="hoja"></i><h3>Diseño bioclimático y huella cero</h3>
+                    <p>Nuestra estructura geodésica optimiza el flujo de aire natural, reduce el consumo energético y se instala sin dañar el ecosistema.</p></div>
+                <div class="card"><i data-ico="rayo"></i><h3>Despliegue ultra-rápido</h3>
+                    <p>Ingeniería modular que llega lista para montar, sin obra tradicional.</p></div>
+                <div class="card"><i data-ico="domo"></i><h3>Múltiples usos</h3>
+                    <p>Vivienda, oficina, gastronomía y salud en un mismo concepto de ingeniería.</p></div>
             </div>
-
         </section>
 
+        <!-- ============ PROCESO EN 3 PASOS ============ -->
+        <section id="proceso" style="background:var(--claro)">
+            <div class="t"><h2>Tu domo en <em>3 pasos</em></h2><p>Sin obra tradicional: te acompañamos desde la elección hasta el montaje.</p></div>
+            <div class="pasos">
+                <div class="paso"><b>1</b><h3>Elegí tu modelo</h3><p>Seleccioná el domo según su uso y pedí tu cotización.</p></div>
+                <div class="paso"><b>2</b><h3>Preparamos el terreno</h3><p>Definimos la base y los requisitos del suelo para tu domo.</p></div>
+                <!-- CAMBIAR: confirmá el plazo real de montaje -->
+                <div class="paso"><b>3</b><h3>Montaje en 7 días</h3><p>Instalamos la estructura modular y la dejamos lista para usar.</p></div>
+            </div>
+        </section>
 
-        <!-- ===== SECCIÓN: ESTADO DE LOS DOMOS ===== -->
+        <!-- ============ SMART DOME ============ -->
         <section class="led">
-
             <div class="t">
-                <h2>Estado a simple vista</h2>
-
-                <p>
-                    La línea de luz LED indica si el domo está
-                    disponible o ocupado, sin necesidad de preguntar.
-                </p>
+                <h2>Smart Dome: inteligencia y domótica</h2>
+                <p>Tecnología integrada para controlar y cuidar tu espacio. La línea de luz LED indica el estado del domo a simple vista.</p>
             </div>
-
+            <div class="feat">
+                <span data-ico-t="clima">Control de clima</span>
+                <span data-ico-t="llave">Cerraduras inteligentes</span>
+                <span data-ico-t="escudo">Aislamiento de alta tecnología</span>
+                <span data-ico-t="led">Indicador LED de estado</span>
+            </div>
             <div class="led-g">
-
-                <figure>
-                    <img
-                        src="img/domo-disponible.jpg"
-                        alt="Domo disponible"
-                    >
-
-                    <figcaption>
-                        <b style="background:#19d65a"></b>
-                        DISPONIBLE
-                    </figcaption>
-                </figure>
-
-                <figure>
-                    <img
-                        src="img/domo-ocupado.jpg"
-                        alt="Domo ocupado"
-                    >
-
-                    <figcaption>
-                        <b style="background:#1e6bff"></b>
-                        OCUPADO
-                    </figcaption>
-                </figure>
-
+                <figure><img src="img/domo-disponible.jpg" alt="Domo disponible"><figcaption><b style="background:#19d65a"></b>DISPONIBLE</figcaption></figure>
+                <figure><img src="img/domo-ocupado.jpg" alt="Domo ocupado"><figcaption><b style="background:#1e6bff"></b>OCUPADO</figcaption></figure>
             </div>
-
         </section>
 
+        <!-- ============ PREGUNTAS FRECUENTES (CAMBIAR: validá cada respuesta) ============ -->
+        <section id="faq">
+            <div class="t"><h2>Preguntas <em>frecuentes</em></h2></div>
+            <div class="faq">
+                <details><summary>¿Necesito permiso de construcción?</summary>
+                    <p>Los requisitos dependen de tu municipio y del uso del domo. Te asesoramos con la documentación técnica para gestionarlo en tu zona.</p></details>
+                <details><summary>¿Qué mantenimiento requiere?</summary>
+                    <p>Es una estructura de bajo mantenimiento. Según el modelo y los materiales, te indicamos los cuidados recomendados.</p></details>
+                <details><summary>¿Resiste climas extremos?</summary>
+                    <p>El comportamiento depende del modelo y de la aislación elegida. Consultanos por las condiciones de tu zona y te recomendamos la mejor opción.</p></details>
+                <details><summary>¿Qué garantía tiene?</summary>
+                    <p>Las condiciones de garantía dependen del modelo y se detallan en la cotización.</p></details>
+            </div>
+        </section>
 
-        <!-- ===== SECCIÓN: CONTACTO RÁPIDO ===== -->
+        <!-- ============ LLAMADO FINAL ============ -->
         <section class="cta">
-
-            <h2>¿Querés un domo NEODOMOS?</h2>
-
-            <p>
-                Escribinos y te asesoramos sin compromiso.
-            </p>
-
-            <a
-                class="btn btn-b"
-                id="cta-wa"
-                target="_blank"
-            >
-                Consultar por WhatsApp
-            </a>
-
+            <h2>¿Listo para tener tu domo?</h2>
+            <p>Hablá con un asesor y recibí tu cotización sin compromiso.</p>
+            <a class="btn btn-b" id="cta-wa" target="_blank" rel="noopener">Cotizar mi domo</a>
         </section>
-
     </main>
 
+    <footer id="site-footer"></footer>
 
-    <!-- ============ FOOTER ============ -->
-    <footer>
-        © <span id="year"></span>
-        NEODOMOS · Todos los derechos reservados
-    </footer>
-
-
-    <!-- ============ JAVASCRIPT ============ -->
+    <script src="domos.js"></script>
     <script>
-
-        /* ==========================================
-           1. CONFIGURACIÓN GENERAL
-           Cambiar los datos de contacto del sitio.
-           ========================================== */
-
-        const CONFIG = {
-            whatsapp: "5493513991739",
-            // Instagram de la empresa
-            instagram: "https://www.instagram.com/neodomos",
-            // Mensajes predeterminados
-            mensajeReserva: "Hola! Quiero más información sobre los domos NEODOMOS.",
-            mensajeGeneral: "Hola! Quiero más información sobre los domos NEODOMOS."
-
-        };
-
-
-        // Genera un enlace de WhatsApp con el mensaje indicado.
-        const wa = m =>
-            `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`;
-
-
-        /* ==========================================
-           3. NODOS
-           Configuración de cada tipo de domo.
-
-           Para agregar otro:
-           - Copiar un objeto.
-           - Pegar al final, separado por una coma.
-           - Modificar sus datos e imágenes.
-
-           El menú y las páginas se generan solos.
-           ========================================== */
-
-        const NODOS = [
-
-            {
-                id: "habitacional",
-                nombre: "Habitacional",
-                icono: "🛏️",
-
-                fondo: "img/domo-disponible.jpg",
-
-                resumen: "Tu refugio perfecto en medio de la naturaleza. Descansá con todo el confort.",
-
-                titulo: "Domo Habitacional",
-
-                descripcion: "Un espacio pensado para descansar: ambiente integrado, ventanales panorámicos y toda la comodidad en un diseño compacto.",
-
-                specs: [
-                    ["Superficie", "18 m²"],
-                    ["Capacidad", "2 personas"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Ventanales panorámicos",
-                    "Aislación térmica",
-                    "Luz LED de estado",
-                    "Baño y kitchenette"
-                ],
-
-                galeria: [
-                    "img/domo-blanco.jpg",
-                    "img/domo-disponible.jpg",
-                    "img/domo-ocupado.jpg"
-                ]
-            },
-
-            {
-                id: "enfermeria",
-                nombre: "Enfermería",
-                icono: "🩺",
-
-                fondo: "img/domo-blanco.jpg",
-
-                resumen: "Espacios de salud modulares, higiénicos y listos para instalar donde se necesiten.",
-
-                titulo: "Domo Enfermería",
-
-                descripcion: "Consultorio o puesto sanitario modular, de rápida instalación y fácil mantenimiento.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Superficies lavables",
-                    "Climatización",
-                    "Iluminación LED"
-                ],
-
-                galeria: [
-                    "img/domo-blanco.jpg"
-                ]
-            },
-
-            {
-                id: "bar",
-                nombre: "Bar & Ocio",
-                icono: "🍸",
-
-                fondo: "img/domo-ocupado.jpg",
-
-                resumen: "Un punto de encuentro diferente para eventos, copas y momentos al aire libre.",
-
-                titulo: "Domo Bar & Ocio",
-
-                descripcion: "Ideal para barras, lounges y espacios de entretenimiento con una estética moderna.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Barra integrada",
-                    "Iluminación ambiental",
-                    "Ventanales"
-                ],
-
-                galeria: [
-                    "img/domo-ocupado.jpg",
-                    "img/domo-blanco.jpg"
-                ]
-            },
-
-            {
-                id: "restaurante",
-                nombre: "Restaurante",
-                icono: "🍽️",
-
-                fondo: "img/domo-blanco.jpg",
-
-                resumen: "Gastronomía con vista: un salón compacto y diferente para sorprender a tus clientes.",
-
-                titulo: "Domo Restaurante",
-
-                descripcion: "Salón gastronómico modular para propuestas boutique en entornos naturales.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Salón con vista",
-                    "Cocina equipada",
-                    "Climatización"
-                ],
-
-                galeria: [
-                    "img/domo-blanco.jpg"
-                ]
-            },
-
-            {
-                id: "oficina",
-                nombre: "Oficina",
-                icono: "💼",
-
-                fondo: "img/domo-disponible.jpg",
-
-                resumen: "Trabajá rodeado de naturaleza con un espacio cómodo, silencioso y funcional.",
-
-                titulo: "Domo Oficina",
-
-                descripcion: "Oficina modular para equipos pequeños, coworking o espacios de reunión.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Escritorios",
-                    "Internet-ready",
-                    "Climatización"
-                ],
-
-                galeria: [
-                    "img/domo-disponible.jpg",
-                    "img/domo-blanco.jpg"
-                ]
-            }
-
-        ];
-
-
-        /* ==========================================
-           4. LÓGICA DEL SITIO
-           No hace falta modificar esta sección
-           para cambiar los datos de los domos.
-           ========================================== */
-
-        // Atajo para seleccionar elementos HTML.
-        const $ = s => document.querySelector(s);
-
-
-        // Capas de imágenes del fondo principal.
-        const bgs = [
-            $("#bg0"),
-            $("#bg1")
-        ];
-
-        let capa = 0;
-
-
-        // Precarga las imágenes para que el cambio de fondo sea fluido.
-        NODOS.forEach(n => {
-            (new Image()).src = n.fondo;
-        });
-
-
-        // Configura los enlaces fijos.
-        $("#reservar").href = wa(CONFIG.mensajeReserva);
-
+        montarLayout("home");
+        document.querySelectorAll("[data-ico-t]").forEach(e => e.innerHTML = icono(e.dataset.icoT) + e.textContent);
         $("#insta").href = CONFIG.instagram;
+        $("#cta-wa").href = wa(CONFIG.mensajeCotizar);
 
-        $("#cta-wa").href = wa(CONFIG.mensajeGeneral);
+        const bgs = [$("#bg0"), $("#bg1")];
+        let capa = 0;
+        NODOS.forEach(n => { new Image().src = n.fondo; });   // precarga
 
-        $("#year").textContent = new Date().getFullYear();
-
-
-        /* ==========================================
-           MENÚ DE DOMOS
-           Se genera automáticamente desde NODOS.
-           ========================================== */
-
-        $("#menu").innerHTML = `
-            <button class="sel" id="sel"></button>
-
-            <div class="opts">
-                ${NODOS.map(n => `
-                    <button data-id="${n.id}">
-                        <span>${n.icono}</span>
-                        ${n.nombre}
-                    </button>
-                `).join("")}
-            </div>
-        `;
-
-
-        // Controla la selección de un domo y el menú desplegable.
+        // Menú de domos (lista en PC, selector desplegable en celu)
+        $("#menu").innerHTML = `<button class="sel" id="sel"></button><div class="opts">${NODOS.map(n =>
+            `<button data-id="${n.id}"><span>${icono(n.icono)}</span>${n.nombre}</button>`).join("")}</div>`;
         $("#menu").addEventListener("click", e => {
-
             const b = e.target.closest("button");
-
-            if (!b) {
-                return;
-            }
-
-            if (b.id === "sel") {
-                return $("#menu").classList.toggle("open");
-            }
-
-            seleccionar(
-                NODOS.find(n => n.id === b.dataset.id)
-            );
-
+            if (!b) return;
+            if (b.id === "sel") return $("#menu").classList.toggle("open");
+            seleccionar(NODOS.find(n => n.id === b.dataset.id));
         });
-
-
-        // Cierra el menú al hacer clic fuera de él.
         document.addEventListener("click", e => {
-
-            if (!e.target.closest("#menu")) {
-                $("#menu").classList.remove("open");
-            }
-
+            if (!e.target.closest("#menu")) $("#menu").classList.remove("open");
         });
 
-
-        /* ==========================================
-           SELECCIONAR DOMO
-           Cambia fondo, texto y enlaces.
-           ========================================== */
-
+        // Cambia fondo, texto y botones según el domo elegido
         function seleccionar(n) {
-
-            // Alterna entre las dos capas de fondo.
             capa ^= 1;
-
-            bgs[capa].style.backgroundImage =
-                `url('${n.fondo}')`;
-
+            bgs[capa].style.backgroundImage = `url('${n.fondo}')`;
             bgs[capa].classList.add("on");
-
             bgs[capa ^ 1].classList.remove("on");
-
-
-            // Actualiza el texto principal.
             $("#resumen").textContent = n.resumen;
-
-
-            // Configura los botones.
             $("#mas").href = "info.html?id=" + encodeURIComponent(n.id);
-
-            $("#consultar").href = wa(
-                `Hola! Quiero consultar por el ${n.titulo}.`
-            );
-
-
-            // Actualiza el selector del celular.
-            $("#sel").innerHTML = `
-                <span>${n.icono}</span>
-                ${n.nombre}
-                <em>▾</em>
-            `;
-
-
-            // Cierra el menú después de seleccionar.
+            $("#consultar").href = wa(`Hola! Quiero cotizar el ${n.titulo}.`);
+            $("#sel").innerHTML = `<span>${icono(n.icono)}</span>${n.nombre}<em>▾</em>`;
             $("#menu").classList.remove("open");
-
-
-            // Marca el domo seleccionado.
-            document.querySelectorAll("#menu .opts button")
-                .forEach(b => {
-                    b.classList.toggle(
-                        "on",
-                        b.dataset.id === n.id
-                    );
-                });
-
+            document.querySelectorAll("#menu .opts button").forEach(b => b.classList.toggle("on", b.dataset.id === n.id));
         }
-
-        // Cierra el menú móvil al elegir un enlace.
-        document.querySelectorAll("nav a").forEach(a => {
-            a.addEventListener("click", () => {
-                $("nav").classList.remove("open");
-            });
-        });
-
-
-        /* ==========================================
-           INICIALIZACIÓN
-           Ejecuta estas funciones al cargar el sitio.
-           ========================================== */
-
         seleccionar(NODOS[0]);
-
-
     </script>
-
 </body>
 </html>

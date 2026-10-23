@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NEODOMOS | Contacto</title>
-    <link rel="icon" href="img/logo-monograma.png">
+    <link rel="icon" href="img/logo-blanco.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <style>
@@ -69,22 +69,13 @@
     </style>
 </head>
 <body class="contact-page">
-    <header>
-        <a class="logo" href="index.html#/"><img src="img/logo-solo.webp" alt="NEODOMOS" onerror="this.outerHTML='<b>NEODOMOS</b>'"></a>
-        <button class="burger" aria-label="Abrir menú" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
-        <nav>
-            <a class="l" href="index.html#/">Inicio</a>
-            <a class="l lock" title="Próximamente" onclick="return false">Tour Virtual 🔒</a>
-            <a class="l act" href="contacto.html">Contacto</a>
-            <a class="btn btn-v" id="reservar" target="_blank" rel="noopener">Reservar ahora</a>
-        </nav>
-    </header>
+    <header id="site-header"></header>
 
     <main class="contact-main">
         <section class="cont">
             <div class="t">
                 <h2>Contacto</h2>
-                <p>Elegí el canal que prefieras, te respondemos a la brevedad.</p>
+                <p>Hablá con un asesor y recibí tu cotización. Elegí el canal que prefieras, te respondemos a la brevedad.</p>
             </div>
 
             <div class="ccards">
@@ -116,23 +107,12 @@
         </section>
     </main>
 
-    <footer>© <span id="year"></span> NEODOMOS · Todos los derechos reservados</footer>
+    <footer id="site-footer"></footer>
 
+    <script src="domos.js"></script>
     <script>
-        const CONFIG = {
-            whatsapp: "5493513991739",
-            mensajeReserva: "Hola! Quiero más información sobre los domos NEODOMOS.",
-            mensajeGeneral: "Hola! Quiero más información sobre los domos NEODOMOS."
-        };
-
-        const wa = mensaje => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(mensaje)}`;
-        document.querySelector("#reservar").href = wa(CONFIG.mensajeReserva);
-        document.querySelector("#whatsapp-link").href = wa(CONFIG.mensajeGeneral);
-        document.querySelector("#year").textContent = new Date().getFullYear();
-
-        document.querySelectorAll("nav a").forEach(enlace => {
-            enlace.addEventListener("click", () => document.querySelector("nav").classList.remove("open"));
-        });
+        montarLayout("contacto");
+        $("#whatsapp-link").href = wa(CONFIG.mensajeGeneral);
     </script>
 </body>
 </html>

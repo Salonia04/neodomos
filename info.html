@@ -1,64 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>NEODOMOS | Más información</title>
-    <link rel="icon" href="img/logo-monograma.png">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <title>NEODOMOS | Ficha técnica</title>
+    <link rel="icon" href="img/logo-blanco.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
 
-    <!-- ============ NAVBAR ============ -->
-    <header>
-        <a class="logo" href="index.html#/">
-            <img
-                src="img/logo-solo.webp"
-                alt="NEODOMOS"
-                onerror="this.outerHTML='<b>NEODOMOS</b>'"
-            >
-        </a>
+    <header id="site-header"></header>
 
-        <button
-            class="burger"
-            onclick="document.querySelector('nav').classList.toggle('open')"
-        >
-            ☰
-        </button>
-
-        <nav>
-            <a class="l" href="index.html#/">Inicio</a>
-            <a class="l lock" title="Próximamente" onclick="return false">
-                Tour Virtual 🔒
-            </a>
-            <a class="l" href="contacto.html">Contacto</a>
-            <a class="btn btn-v" id="reservar" target="_blank">
-                Reservar ahora
-            </a>
-        </nav>
-    </header>
-
-    <!-- ============ PÁGINA: MÁS INFO ============ -->
+    <!-- Plantilla: se completa sola según el domo (info.html?id=oficina) -->
     <main class="page on" id="info">
-
         <div class="ib" id="i-banner">
-            <div>
-                <small>Más información</small>
-                <h1 id="i-titulo"></h1>
-            </div>
+            <div><small>Ficha técnica</small><h1 id="i-titulo"></h1></div>
         </div>
 
         <div class="wrap">
             <div class="chips" id="i-chips"></div>
             <p class="lead" id="i-desc"></p>
+
+            <h3>Especificaciones técnicas</h3>
             <div class="specs" id="i-specs"></div>
+
+            <div id="i-modw"><h3>Modelos y variantes</h3><div class="specs" id="i-mod"></div></div>
 
             <h3>Qué incluye</h3>
             <ul class="inc" id="i-inc"></ul>
@@ -67,248 +34,40 @@
             <div class="gal" id="i-gal"></div>
 
             <div class="acts">
-                <a class="btn btn-v" id="i-wa" target="_blank">
-                    Consultar por WhatsApp
-                </a>
-                <a class="btn btn-g" href="index.html#/">
-                    ← Volver al inicio
-                </a>
+                <a class="btn btn-v" id="i-wa" target="_blank" rel="noopener">Cotizar este domo</a>
+                <a class="btn btn-g" href="index.html">← Volver al inicio</a>
             </div>
         </div>
-
     </main>
 
-    <footer>
-        © <span id="year"></span>
-        NEODOMOS · Todos los derechos reservados
-    </footer>
+    <footer id="site-footer"></footer>
 
+    <script src="domos.js"></script>
     <script>
-        // Configuración de enlaces.
-        const CONFIG = {
-            whatsapp: "5493513991739",
-            instagram: "https://www.instagram.com/neodomos",
-            mensajeReserva: "Hola! Quiero más información sobre los domos NEODOMOS."
-        };
+        montarLayout("info");
 
-        const wa = m =>
-            `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`;
+        // Lee el domo desde info.html?id=habitacional
+        const id = new URLSearchParams(location.search).get("id");
+        const n = NODOS.find(x => x.id === id) || NODOS[0];
 
-        $("#reservar").href = wa(CONFIG.mensajeReserva);
-        $("#year").textContent = new Date().getFullYear();
+        document.title = `NEODOMOS | ${n.titulo}`;
+        $("#i-banner").style.backgroundImage = `linear-gradient(rgba(20,26,31,.2),rgba(20,26,31,.8)),url('${n.fondo}')`;
+        $("#i-titulo").textContent = n.titulo;
+        $("#i-desc").textContent = n.descripcion;
+        $("#i-chips").innerHTML = NODOS.map(x =>
+            `<a href="info.html?id=${encodeURIComponent(x.id)}" class="${x.id === n.id ? "on" : ""}">${icono(x.icono)} ${x.nombre}</a>`).join("");
 
-        function $(selector) {
-            return document.querySelector(selector);
-        }
+        // Siempre muestra todas las filas de SPECS_BASE; las que faltan dicen "A confirmar"
+        $("#i-specs").innerHTML = SPECS_BASE.map(l =>
+            `<div><small>${l}</small><b>${n.specs[l] || "A confirmar"}</b></div>`).join("");
 
-        const NODOS = [
+        // Modelos y variantes: solo aparece si el domo tiene "modelos" en domos.js
+        $("#i-modw").style.display = n.modelos ? "" : "none";
+        $("#i-mod").innerHTML = (n.modelos || []).map(m => `<div><small>${m[1]}</small><b>${m[0]}</b></div>`).join("");
 
-            {
-                id: "habitacional",
-                nombre: "Habitacional",
-                icono: "🛏️",
-
-                fondo: "img/domo-disponible.jpg",
-
-                resumen: "Tu refugio perfecto en medio de la naturaleza. Descansá con todo el confort.",
-
-                titulo: "Domo Habitacional",
-
-                descripcion: "Un espacio pensado para descansar: ambiente integrado, ventanales panorámicos y toda la comodidad en un diseño compacto.",
-
-                specs: [
-                    ["Superficie", "18 m²"],
-                    ["Capacidad", "2 personas"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Ventanales panorámicos",
-                    "Aislación térmica",
-                    "Luz LED de estado",
-                    "Baño y kitchenette"
-                ],
-
-                galeria: [
-                    "img/domo-blanco.jpg",
-                    "img/domo-disponible.jpg",
-                    "img/domo-ocupado.jpg"
-                ]
-            },
-
-            {
-                id: "enfermeria",
-                nombre: "Enfermería",
-                icono: "🩺",
-
-                fondo: "img/domo-blanco.jpg",
-
-                resumen: "Espacios de salud modulares, higiénicos y listos para instalar donde se necesiten.",
-
-                titulo: "Domo Enfermería",
-
-                descripcion: "Consultorio o puesto sanitario modular, de rápida instalación y fácil mantenimiento.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Superficies lavables",
-                    "Climatización",
-                    "Iluminación LED"
-                ],
-
-                galeria: [
-                    "img/domo-blanco.jpg"
-                ]
-            },
-
-            {
-                id: "bar",
-                nombre: "Bar & Ocio",
-                icono: "🍸",
-
-                fondo: "img/domo-ocupado.jpg",
-
-                resumen: "Un punto de encuentro diferente para eventos, copas y momentos al aire libre.",
-
-                titulo: "Domo Bar & Ocio",
-
-                descripcion: "Ideal para barras, lounges y espacios de entretenimiento con una estética moderna.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Barra integrada",
-                    "Iluminación ambiental",
-                    "Ventanales"
-                ],
-
-                galeria: [
-                    "img/domo-ocupado.jpg",
-                    "img/domo-blanco.jpg"
-                ]
-            },
-
-            {
-                id: "restaurante",
-                nombre: "Restaurante",
-                icono: "🍽️",
-
-                fondo: "img/domo-blanco.jpg",
-
-                resumen: "Gastronomía con vista: un salón compacto y diferente para sorprender a tus clientes.",
-
-                titulo: "Domo Restaurante",
-
-                descripcion: "Salón gastronómico modular para propuestas boutique en entornos naturales.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Salón con vista",
-                    "Cocina equipada",
-                    "Climatización"
-                ],
-
-                galeria: [
-                    "img/domo-blanco.jpg"
-                ]
-            },
-
-            {
-                id: "oficina",
-                nombre: "Oficina",
-                icono: "💼",
-
-                fondo: "img/domo-disponible.jpg",
-
-                resumen: "Trabajá rodeado de naturaleza con un espacio cómodo, silencioso y funcional.",
-
-                titulo: "Domo Oficina",
-
-                descripcion: "Oficina modular para equipos pequeños, coworking o espacios de reunión.",
-
-                specs: [
-                    ["Superficie", "A confirmar"],
-                    ["Capacidad", "A confirmar"],
-                    ["Montaje", "A confirmar"],
-                    ["Energía", "A confirmar"]
-                ],
-
-                incluye: [
-                    "Escritorios",
-                    "Internet-ready",
-                    "Climatización"
-                ],
-
-                galeria: [
-                    "img/domo-disponible.jpg",
-                    "img/domo-blanco.jpg"
-                ]
-            }
-
-        ];
-
-        // Completa la página con la información del domo seleccionado.
-        function pintarInfo(n) {
-            $("#i-banner").style.backgroundImage =
-                `linear-gradient(rgba(20,26,31,.2),rgba(20,26,31,.8)),url('${n.fondo}')`;
-
-            $("#i-titulo").textContent = n.titulo;
-            $("#i-desc").textContent = n.descripcion;
-
-            $("#i-chips").innerHTML = NODOS.map(x => `
-                <a
-                    href="info.html?id=${encodeURIComponent(x.id)}"
-                    class="${x.id === n.id ? "on" : ""}"
-                >
-                    ${x.icono} ${x.nombre}
-                </a>
-            `).join("");
-
-            $("#i-specs").innerHTML = n.specs.map(s => `
-                <div>
-                    <small>${s[0]}</small>
-                    <b>${s[1]}</b>
-                </div>
-            `).join("");
-
-            $("#i-inc").innerHTML = n.incluye.map(i => `
-                <li>${i}</li>
-            `).join("");
-
-            $("#i-gal").innerHTML = n.galeria.map(g => `
-                <img src="${g}" alt="${n.titulo}">
-            `).join("");
-
-            $("#i-wa").href = wa(
-                `Hola! Quiero consultar por el ${n.titulo}.`
-            );
-        }
-
-        // Lee el identificador desde info.html?id=habitacional.
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get("id") || NODOS[0].id;
-        const nodo = NODOS.find(n => n.id === id) || NODOS[0];
-
-        pintarInfo(nodo);
+        $("#i-inc").innerHTML = n.incluye.map(i => `<li>${i}</li>`).join("");
+        $("#i-gal").innerHTML = n.galeria.map(g => `<img src="${g}" alt="${n.titulo}">`).join("");
+        $("#i-wa").href = wa(`Hola! Quiero cotizar el ${n.titulo}.`);
     </script>
-
 </body>
 </html>
