@@ -1,249 +1,645 @@
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NEODOMOS | Domos modulares</title>
-<!-- CAMBIAR: ícono de la pestaña del navegador -->
-<link rel="icon" href="img/logo-monograma.png">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<!-- Estilos: están en el archivo index.css (colores en :root, al principio) -->
-<link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>NEODOMOS | Domos modulares</title>
+
+    <!-- Ícono de la pestaña del navegador -->
+    <link rel="icon" href="img/logo-monograma.png">
+
+    <!-- Tipografía -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 
-<!-- ============ NAVBAR ============ -->
-<header>
-  <!-- CAMBIAR: logo (img/logo-wordmark.png). Si no carga, muestra el texto -->
-  <a class="logo" href="#/"><img src="img/logo-wordmark.png" alt="NEODOMOS" onerror="this.outerHTML='<b>NEODOMOS</b>'"></a>
-  <button class="burger" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
-  <nav>
-    <a class="l" data-p="home" href="#/">Inicio</a>
-    <a class="l lock" title="Próximamente" onclick="return false">Tour Virtual 🔒</a>
-    <a class="l" data-p="contacto" href="#/contacto">Contacto</a>
-    <a class="btn btn-v" id="reservar" target="_blank">Reservar ahora</a>
-  </nav>
-</header>
+    <!-- ============ NAVBAR ============ -->
+    <header>
 
-<!-- ============ PÁGINA: INICIO ============ -->
-<main class="page on" id="home">
-  <div class="hero">
-    <div class="bg" id="bg0"></div><div class="bg" id="bg1"></div>
-    <div class="txt">
-      <h1>Vive la experiencia<br>del domo</h1>
-      <!-- El texto de abajo cambia solo según el nodo (campo "resumen" en NODOS) -->
-      <p id="resumen"></p>
-      <div class="acts">
-        <a class="btn btn-b" id="mas">MÁS INFO →</a>
-        <a class="btn btn-o" id="consultar" target="_blank">CONSULTAR</a>
-      </div>
-    </div>
-    <div class="menu" id="menu"></div> <!-- se arma solo desde NODOS -->
+        <!-- Logo -->
+        <a class="logo" href="#/">
+            <img
+                src="img/logo-solo.webp"
+                alt="NEODOMOS"
+                onerror="this.outerHTML='<b>NEODOMOS</b>'"
+            >
+        </a>
 
-    <!-- Abajo izquierda: cambiar el texto si querés -->
-    <div class="soon"><i></i> Tour 3D · Próximamente</div>
-    <!-- Abajo derecha: Instagram (el link se cambia en CONFIG) -->
-    <a class="insta" id="insta" target="_blank" title="Instagram">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-    </a>
-  </div>
+        <!-- Botón del menú para celulares -->
+        <button
+            class="burger"
+            onclick="document.querySelector('nav').classList.toggle('open')"
+        >
+            ☰
+        </button>
 
-  <!-- ===== Lo que aparece al scrollear. Podés editar textos o borrar secciones enteras ===== -->
-  <section>
-    <div class="t"><h2>Por qué elegir <em>NEODOMOS</em></h2><p>Espacios modulares pensados para integrarse con la naturaleza sin resignar confort.</p></div>
-    <div class="cards">
-      <div class="card"><i>🌲</i><h3>Integración natural</h3><p>Diseño compacto que se adapta al paisaje y respeta el entorno.</p></div>
-      <div class="card"><i>⚡</i><h3>Montaje rápido</h3><p>Estructura modular lista para instalar en poco tiempo.</p></div>
-      <div class="card"><i>🏠</i><h3>Múltiples usos</h3><p>Habitacional, oficina, gastronomía y más, en un mismo concepto.</p></div>
-    </div>
-  </section>
+        <!-- Navegación -->
+        <nav>
+            <a class="l" data-p="home" href="#/">Inicio</a>
 
-  <section class="led">
-    <div class="t"><h2>Estado a simple vista</h2><p>La línea de luz LED indica si el domo está disponible o ocupado, sin necesidad de preguntar.</p></div>
-    <div class="led-g">
-      <figure><img src="img/domo-disponible.jpg" alt="Domo disponible"><figcaption><b style="background:#19d65a"></b>DISPONIBLE</figcaption></figure>
-      <figure><img src="img/domo-ocupado.jpg" alt="Domo ocupado"><figcaption><b style="background:#1e6bff"></b>OCUPADO</figcaption></figure>
-    </div>
-  </section>
+            <a
+                class="l lock"
+                title="Próximamente"
+                onclick="return false"
+            >
+                Tour Virtual 🔒
+            </a>
 
-  <section class="cta">
-    <h2>¿Querés un domo NEODOMOS?</h2><p>Escribinos y te asesoramos sin compromiso.</p>
-    <a class="btn btn-b" id="cta-wa" target="_blank">Consultar por WhatsApp</a>
-  </section>
-</main>
+            <a class="l" href="contacto.html">
+                Contacto
+            </a>
 
-<!-- ============ PÁGINA: MÁS INFO (plantilla, se llena sola según el domo) ============ -->
-<main class="page" id="info">
-  <div class="ib" id="i-banner"><div><small>Más información</small><h1 id="i-titulo"></h1></div></div>
-  <div class="wrap">
-    <div class="chips" id="i-chips"></div>
-    <p class="lead" id="i-desc"></p>
-    <div class="specs" id="i-specs"></div>
-    <h3>Qué incluye</h3><ul class="inc" id="i-inc"></ul>
-    <h3>Galería</h3><div class="gal" id="i-gal"></div>
-    <div class="acts"><a class="btn btn-v" id="i-wa" target="_blank">Consultar por WhatsApp</a><a class="btn btn-g" href="#/">← Volver al inicio</a></div>
-  </div>
-</main>
+            <a
+                class="btn btn-v"
+                id="reservar"
+                target="_blank"
+            >
+                Reservar ahora
+            </a>
+        </nav>
 
-<!-- ============ PÁGINA: CONTACTO ============ -->
-<main class="page" id="contacto">
-  <section class="cont">
-    <div class="t"><h2>Contacto</h2><p>Elegí el canal que prefieras, te respondemos a la brevedad.</p></div>
-    <div class="ccards" id="ccards"></div>
-  </section>
-</main>
+    </header>
 
-<footer>© <span id="year"></span> NEODOMOS · Todos los derechos reservados</footer>
 
-<script>
-/* ==========================================================
-   1) CONFIGURACIÓN GENERAL  ← CAMBIÁ ESTOS DATOS
-   ========================================================== */
-const CONFIG = {
-  // WhatsApp: código país + 9 + código de área SIN 0 + número SIN 15. Ej Córdoba: 5493510000000
-  whatsapp: "5493510000000",
-  instagram: "https://www.instagram.com/neodomos",   // link de tu Instagram
-  mensajeReserva: "Hola! Quiero reservar un domo NEODOMOS.",
-  mensajeGeneral: "Hola! Quiero más información sobre los domos NEODOMOS."
-};
-const wa = m => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`;
+    <!-- ============ PÁGINA: INICIO ============ -->
+    <main class="page on" id="home">
 
-/* ==========================================================
-   2) CONTACTOS (página "Contacto")  ← agregá/borrá bloques
-   ========================================================== */
-const CONTACTOS = [
-  {icono:"💬", titulo:"WhatsApp",  detalle:"+54 9 351 000 0000",   link: wa(CONFIG.mensajeGeneral)},
-  {icono:"📸", titulo:"Instagram", detalle:"@neodomos",            link: CONFIG.instagram},
-  {icono:"✉️", titulo:"Email",     detalle:"info@neodomos.com",    link: "mailto:info@neodomos.com"},
-  {icono:"📞", titulo:"Teléfono",  detalle:"+54 351 000 0000",     link: "tel:+543510000000"},
-  {icono:"📍", titulo:"Ubicación", detalle:"Córdoba, Argentina",   link: "https://maps.google.com/?q=Córdoba,Argentina"}
-];
+        <!-- Portada principal -->
+        <div class="hero">
 
-/* ==========================================================
-   3) MENÚ DE NODOS  ← ACÁ AGREGÁS MÁS DOMOS
-   Para agregar uno nuevo: copiá un bloque { ... }, pegalo al final
-   (con una coma antes) y cambiá los datos. El menú, el fondo y la
-   página "Más info" se crean solos.
-   - id: único, sin espacios ni tildes (se usa en el link)
-   - fondo: imagen de fondo del inicio (poné tus fotos en la carpeta img/)
-   - galeria: fotos de la página "Más info"
-   - specs / incluye: DATOS DE EJEMPLO, reemplazalos por los reales
-   ========================================================== */
-const NODOS = [
-  { id:"habitacional", nombre:"Habitacional", icono:"🛏️",
-    fondo:"img/domo-disponible.jpg",
-    resumen:"Tu refugio perfecto en medio de la naturaleza. Descansá con todo el confort.",
-    titulo:"Domo Habitacional",
-    descripcion:"Un espacio pensado para descansar: ambiente integrado, ventanales panorámicos y toda la comodidad en un diseño compacto.",
-    specs:[["Superficie","18 m²"],["Capacidad","2 personas"],["Montaje","A confirmar"],["Energía","A confirmar"]],
-    incluye:["Ventanales panorámicos","Aislación térmica","Luz LED de estado","Baño y kitchenette"],
-    galeria:["img/domo-blanco.jpg","img/domo-disponible.jpg","img/domo-ocupado.jpg"] },
+            <!-- Fondos que se alternan al cambiar de domo -->
+            <div class="bg" id="bg0"></div>
+            <div class="bg" id="bg1"></div>
 
-  { id:"enfermeria", nombre:"Enfermería", icono:"🩺",
-    fondo:"img/domo-blanco.jpg",
-    resumen:"Espacios de salud modulares, higiénicos y listos para instalar donde se necesiten.",
-    titulo:"Domo Enfermería",
-    descripcion:"Consultorio o puesto sanitario modular, de rápida instalación y fácil mantenimiento.",
-    specs:[["Superficie","A confirmar"],["Capacidad","A confirmar"],["Montaje","A confirmar"],["Energía","A confirmar"]],
-    incluye:["Superficies lavables","Climatización","Iluminación LED"],
-    galeria:["img/domo-blanco.jpg"] },
+            <!-- Texto principal -->
+            <div class="txt">
 
-  { id:"bar", nombre:"Bar & Ocio", icono:"🍸",
-    fondo:"img/domo-ocupado.jpg",
-    resumen:"Un punto de encuentro diferente para eventos, copas y momentos al aire libre.",
-    titulo:"Domo Bar & Ocio",
-    descripcion:"Ideal para barras, lounges y espacios de entretenimiento con una estética moderna.",
-    specs:[["Superficie","A confirmar"],["Capacidad","A confirmar"],["Montaje","A confirmar"],["Energía","A confirmar"]],
-    incluye:["Barra integrada","Iluminación ambiental","Ventanales"],
-    galeria:["img/domo-ocupado.jpg","img/domo-blanco.jpg"] },
+                <h1>
+                    Vive la experiencia<br>
+                    del domo
+                </h1>
 
-  { id:"restaurante", nombre:"Restaurante", icono:"🍽️",
-    fondo:"img/domo-blanco.jpg",
-    resumen:"Gastronomía con vista: un salón compacto y diferente para sorprender a tus clientes.",
-    titulo:"Domo Restaurante",
-    descripcion:"Salón gastronómico modular para propuestas boutique en entornos naturales.",
-    specs:[["Superficie","A confirmar"],["Capacidad","A confirmar"],["Montaje","A confirmar"],["Energía","A confirmar"]],
-    incluye:["Salón con vista","Cocina equipada","Climatización"],
-    galeria:["img/domo-blanco.jpg"] },
+                <!-- Resumen dinámico del domo seleccionado -->
+                <p id="resumen"></p>
 
-  { id:"oficina", nombre:"Oficina", icono:"💼",
-    fondo:"img/domo-disponible.jpg",
-    resumen:"Trabajá rodeado de naturaleza con un espacio cómodo, silencioso y funcional.",
-    titulo:"Domo Oficina",
-    descripcion:"Oficina modular para equipos pequeños, coworking o espacios de reunión.",
-    specs:[["Superficie","A confirmar"],["Capacidad","A confirmar"],["Montaje","A confirmar"],["Energía","A confirmar"]],
-    incluye:["Escritorios","Internet-ready","Climatización"],
-    galeria:["img/domo-disponible.jpg","img/domo-blanco.jpg"] }
-];
+                <!-- Botones de acción -->
+                <div class="acts">
+                    <a class="btn btn-b" id="mas">
+                        MÁS INFO →
+                    </a>
 
-/* ==========================================================
-   4) LÓGICA (no hace falta tocar de acá para abajo)
-   ========================================================== */
-const $ = s => document.querySelector(s);
-const bgs = [$('#bg0'), $('#bg1')];
-let capa = 0;
+                    <a
+                        class="btn btn-o"
+                        id="consultar"
+                        target="_blank"
+                    >
+                        CONSULTAR
+                    </a>
+                </div>
 
-// Precarga de fondos para que el cambio sea fluido
-NODOS.forEach(n => { (new Image()).src = n.fondo; });
+            </div>
 
-// Links fijos
-$('#reservar').href = wa(CONFIG.mensajeReserva);
-$('#insta').href = CONFIG.instagram;
-$('#cta-wa').href = wa(CONFIG.mensajeGeneral);
-$('#year').textContent = new Date().getFullYear();
+            <!-- Menú de domos generado desde NODOS -->
+            <div class="menu" id="menu"></div>
 
-// Menú de nodos (en PC: lista a la derecha · en celu: selector desplegable)
-$('#menu').innerHTML = `<button class="sel" id="sel"></button><div class="opts">${NODOS.map(n => `<button data-id="${n.id}"><span>${n.icono}</span>${n.nombre}</button>`).join('')}</div>`;
-$('#menu').addEventListener('click', e => {
-  const b = e.target.closest('button'); if (!b) return;
-  if (b.id === 'sel') return $('#menu').classList.toggle('open');
-  seleccionar(NODOS.find(n => n.id === b.dataset.id));
-});
-document.addEventListener('click', e => { if (!e.target.closest('#menu')) $('#menu').classList.remove('open'); });
+            <!-- Aviso del tour virtual -->
+            <div class="soon">
+                <i></i>
+                Tour 3D · Próximamente
+            </div>
 
-// Contactos
-$('#ccards').innerHTML = CONTACTOS.map(c => `<a class="cc" href="${c.link}" target="_blank"><i>${c.icono}</i><small>${c.titulo}</small><b>${c.detalle}</b></a>`).join('');
+            <!-- Acceso a Instagram -->
+            <a
+                class="insta"
+                id="insta"
+                target="_blank"
+                title="Instagram"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    width="26"
+                    height="26"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="5"
+                    />
 
-// Cambia fondo, texto y botones según el nodo elegido
-function seleccionar(n) {
-  capa ^= 1;
-  bgs[capa].style.backgroundImage = `url('${n.fondo}')`;
-  bgs[capa].classList.add('on'); bgs[capa ^ 1].classList.remove('on');
-  $('#resumen').textContent = n.resumen;
-  $('#mas').href = '#/info/' + n.id;
-  $('#consultar').href = wa(`Hola! Quiero consultar por el ${n.titulo}.`);
-  $('#sel').innerHTML = `<span>${n.icono}</span>${n.nombre}<em>▾</em>`;
-  $('#menu').classList.remove('open');
-  document.querySelectorAll('#menu .opts button').forEach(b => b.classList.toggle('on', b.dataset.id === n.id));
-}
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="4"
+                    />
 
-// Rellena la plantilla "Más info"
-function pintarInfo(n) {
-  $('#i-banner').style.backgroundImage = `linear-gradient(rgba(20,26,31,.2),rgba(20,26,31,.8)),url('${n.fondo}')`;
-  $('#i-titulo').textContent = n.titulo;
-  $('#i-desc').textContent = n.descripcion;
-  $('#i-chips').innerHTML = NODOS.map(x => `<a href="#/info/${x.id}" class="${x.id === n.id ? 'on' : ''}">${x.icono} ${x.nombre}</a>`).join('');
-  $('#i-specs').innerHTML = n.specs.map(s => `<div><small>${s[0]}</small><b>${s[1]}</b></div>`).join('');
-  $('#i-inc').innerHTML = n.incluye.map(i => `<li>${i}</li>`).join('');
-  $('#i-gal').innerHTML = n.galeria.map(g => `<img src="${g}" alt="${n.titulo}">`).join('');
-  $('#i-wa').href = wa(`Hola! Quiero consultar por el ${n.titulo}.`);
-}
+                    <circle
+                        cx="17.5"
+                        cy="6.5"
+                        r="1"
+                        fill="currentColor"
+                    />
+                </svg>
+            </a>
 
-// Rutas simples: #/  ·  #/info/<id>  ·  #/contacto
-function ruta() {
-  const [, pg, id] = (location.hash || '#/').split('/');
-  const n = NODOS.find(x => x.id === id);
-  const p = pg === 'info' && n ? 'info' : pg === 'contacto' ? 'contacto' : 'home';
-  document.querySelectorAll('.page').forEach(e => e.classList.toggle('on', e.id === p));
-  document.querySelectorAll('nav .l').forEach(a => a.classList.toggle('act', a.dataset.p === p));
-  if (p === 'info') pintarInfo(n);
-  window.scrollTo(0, 0);
-  $('nav').classList.remove('open');
-}
-window.addEventListener('hashchange', ruta);
+        </div>
 
-seleccionar(NODOS[0]);
-ruta();
-</script>
+
+        <!-- ===== SECCIÓN: POR QUÉ ELEGIR NEODOMOS ===== -->
+        <section>
+
+            <div class="t">
+                <h2>
+                    Por qué elegir <em>NEODOMOS</em>
+                </h2>
+
+                <p>
+                    Espacios modulares pensados para integrarse
+                    con la naturaleza sin resignar confort.
+                </p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+                    <i>🌲</i>
+                    <h3>Integración natural</h3>
+                    <p>
+                        Diseño compacto que se adapta al paisaje
+                        y respeta el entorno.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <i>⚡</i>
+                    <h3>Montaje rápido</h3>
+                    <p>
+                        Estructura modular lista para instalar
+                        en poco tiempo.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <i>🏠</i>
+                    <h3>Múltiples usos</h3>
+                    <p>
+                        Habitacional, oficina, gastronomía y más,
+                        en un mismo concepto.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===== SECCIÓN: ESTADO DE LOS DOMOS ===== -->
+        <section class="led">
+
+            <div class="t">
+                <h2>Estado a simple vista</h2>
+
+                <p>
+                    La línea de luz LED indica si el domo está
+                    disponible o ocupado, sin necesidad de preguntar.
+                </p>
+            </div>
+
+            <div class="led-g">
+
+                <figure>
+                    <img
+                        src="img/domo-disponible.jpg"
+                        alt="Domo disponible"
+                    >
+
+                    <figcaption>
+                        <b style="background:#19d65a"></b>
+                        DISPONIBLE
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img
+                        src="img/domo-ocupado.jpg"
+                        alt="Domo ocupado"
+                    >
+
+                    <figcaption>
+                        <b style="background:#1e6bff"></b>
+                        OCUPADO
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===== SECCIÓN: CONTACTO RÁPIDO ===== -->
+        <section class="cta">
+
+            <h2>¿Querés un domo NEODOMOS?</h2>
+
+            <p>
+                Escribinos y te asesoramos sin compromiso.
+            </p>
+
+            <a
+                class="btn btn-b"
+                id="cta-wa"
+                target="_blank"
+            >
+                Consultar por WhatsApp
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        © <span id="year"></span>
+        NEODOMOS · Todos los derechos reservados
+    </footer>
+
+
+    <!-- ============ JAVASCRIPT ============ -->
+    <script>
+
+        /* ==========================================
+           1. CONFIGURACIÓN GENERAL
+           Cambiar los datos de contacto del sitio.
+           ========================================== */
+
+        const CONFIG = {
+
+            // WhatsApp: código de país + número completo.
+            // Ejemplo Córdoba: 5493510000000
+            whatsapp: "5493510000000",
+
+            // Instagram de la empresa
+            instagram: "https://www.instagram.com/neodomos",
+
+            // Mensajes predeterminados
+            mensajeReserva: "Hola! Quiero reservar un domo NEODOMOS.",
+
+            mensajeGeneral: "Hola! Quiero más información sobre los domos NEODOMOS."
+
+        };
+
+
+        // Genera un enlace de WhatsApp con el mensaje indicado.
+        const wa = m =>
+            `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`;
+
+
+        /* ==========================================
+           3. NODOS
+           Configuración de cada tipo de domo.
+
+           Para agregar otro:
+           - Copiar un objeto.
+           - Pegar al final, separado por una coma.
+           - Modificar sus datos e imágenes.
+
+           El menú y las páginas se generan solos.
+           ========================================== */
+
+        const NODOS = [
+
+            {
+                id: "habitacional",
+                nombre: "Habitacional",
+                icono: "🛏️",
+
+                fondo: "img/domo-disponible.jpg",
+
+                resumen: "Tu refugio perfecto en medio de la naturaleza. Descansá con todo el confort.",
+
+                titulo: "Domo Habitacional",
+
+                descripcion: "Un espacio pensado para descansar: ambiente integrado, ventanales panorámicos y toda la comodidad en un diseño compacto.",
+
+                specs: [
+                    ["Superficie", "18 m²"],
+                    ["Capacidad", "2 personas"],
+                    ["Montaje", "A confirmar"],
+                    ["Energía", "A confirmar"]
+                ],
+
+                incluye: [
+                    "Ventanales panorámicos",
+                    "Aislación térmica",
+                    "Luz LED de estado",
+                    "Baño y kitchenette"
+                ],
+
+                galeria: [
+                    "img/domo-blanco.jpg",
+                    "img/domo-disponible.jpg",
+                    "img/domo-ocupado.jpg"
+                ]
+            },
+
+            {
+                id: "enfermeria",
+                nombre: "Enfermería",
+                icono: "🩺",
+
+                fondo: "img/domo-blanco.jpg",
+
+                resumen: "Espacios de salud modulares, higiénicos y listos para instalar donde se necesiten.",
+
+                titulo: "Domo Enfermería",
+
+                descripcion: "Consultorio o puesto sanitario modular, de rápida instalación y fácil mantenimiento.",
+
+                specs: [
+                    ["Superficie", "A confirmar"],
+                    ["Capacidad", "A confirmar"],
+                    ["Montaje", "A confirmar"],
+                    ["Energía", "A confirmar"]
+                ],
+
+                incluye: [
+                    "Superficies lavables",
+                    "Climatización",
+                    "Iluminación LED"
+                ],
+
+                galeria: [
+                    "img/domo-blanco.jpg"
+                ]
+            },
+
+            {
+                id: "bar",
+                nombre: "Bar & Ocio",
+                icono: "🍸",
+
+                fondo: "img/domo-ocupado.jpg",
+
+                resumen: "Un punto de encuentro diferente para eventos, copas y momentos al aire libre.",
+
+                titulo: "Domo Bar & Ocio",
+
+                descripcion: "Ideal para barras, lounges y espacios de entretenimiento con una estética moderna.",
+
+                specs: [
+                    ["Superficie", "A confirmar"],
+                    ["Capacidad", "A confirmar"],
+                    ["Montaje", "A confirmar"],
+                    ["Energía", "A confirmar"]
+                ],
+
+                incluye: [
+                    "Barra integrada",
+                    "Iluminación ambiental",
+                    "Ventanales"
+                ],
+
+                galeria: [
+                    "img/domo-ocupado.jpg",
+                    "img/domo-blanco.jpg"
+                ]
+            },
+
+            {
+                id: "restaurante",
+                nombre: "Restaurante",
+                icono: "🍽️",
+
+                fondo: "img/domo-blanco.jpg",
+
+                resumen: "Gastronomía con vista: un salón compacto y diferente para sorprender a tus clientes.",
+
+                titulo: "Domo Restaurante",
+
+                descripcion: "Salón gastronómico modular para propuestas boutique en entornos naturales.",
+
+                specs: [
+                    ["Superficie", "A confirmar"],
+                    ["Capacidad", "A confirmar"],
+                    ["Montaje", "A confirmar"],
+                    ["Energía", "A confirmar"]
+                ],
+
+                incluye: [
+                    "Salón con vista",
+                    "Cocina equipada",
+                    "Climatización"
+                ],
+
+                galeria: [
+                    "img/domo-blanco.jpg"
+                ]
+            },
+
+            {
+                id: "oficina",
+                nombre: "Oficina",
+                icono: "💼",
+
+                fondo: "img/domo-disponible.jpg",
+
+                resumen: "Trabajá rodeado de naturaleza con un espacio cómodo, silencioso y funcional.",
+
+                titulo: "Domo Oficina",
+
+                descripcion: "Oficina modular para equipos pequeños, coworking o espacios de reunión.",
+
+                specs: [
+                    ["Superficie", "A confirmar"],
+                    ["Capacidad", "A confirmar"],
+                    ["Montaje", "A confirmar"],
+                    ["Energía", "A confirmar"]
+                ],
+
+                incluye: [
+                    "Escritorios",
+                    "Internet-ready",
+                    "Climatización"
+                ],
+
+                galeria: [
+                    "img/domo-disponible.jpg",
+                    "img/domo-blanco.jpg"
+                ]
+            }
+
+        ];
+
+
+        /* ==========================================
+           4. LÓGICA DEL SITIO
+           No hace falta modificar esta sección
+           para cambiar los datos de los domos.
+           ========================================== */
+
+        // Atajo para seleccionar elementos HTML.
+        const $ = s => document.querySelector(s);
+
+
+        // Capas de imágenes del fondo principal.
+        const bgs = [
+            $("#bg0"),
+            $("#bg1")
+        ];
+
+        let capa = 0;
+
+
+        // Precarga las imágenes para que el cambio de fondo sea fluido.
+        NODOS.forEach(n => {
+            (new Image()).src = n.fondo;
+        });
+
+
+        // Configura los enlaces fijos.
+        $("#reservar").href = wa(CONFIG.mensajeReserva);
+
+        $("#insta").href = CONFIG.instagram;
+
+        $("#cta-wa").href = wa(CONFIG.mensajeGeneral);
+
+        $("#year").textContent = new Date().getFullYear();
+
+
+        /* ==========================================
+           MENÚ DE DOMOS
+           Se genera automáticamente desde NODOS.
+           ========================================== */
+
+        $("#menu").innerHTML = `
+            <button class="sel" id="sel"></button>
+
+            <div class="opts">
+                ${NODOS.map(n => `
+                    <button data-id="${n.id}">
+                        <span>${n.icono}</span>
+                        ${n.nombre}
+                    </button>
+                `).join("")}
+            </div>
+        `;
+
+
+        // Controla la selección de un domo y el menú desplegable.
+        $("#menu").addEventListener("click", e => {
+
+            const b = e.target.closest("button");
+
+            if (!b) {
+                return;
+            }
+
+            if (b.id === "sel") {
+                return $("#menu").classList.toggle("open");
+            }
+
+            seleccionar(
+                NODOS.find(n => n.id === b.dataset.id)
+            );
+
+        });
+
+
+        // Cierra el menú al hacer clic fuera de él.
+        document.addEventListener("click", e => {
+
+            if (!e.target.closest("#menu")) {
+                $("#menu").classList.remove("open");
+            }
+
+        });
+
+
+        /* ==========================================
+           SELECCIONAR DOMO
+           Cambia fondo, texto y enlaces.
+           ========================================== */
+
+        function seleccionar(n) {
+
+            // Alterna entre las dos capas de fondo.
+            capa ^= 1;
+
+            bgs[capa].style.backgroundImage =
+                `url('${n.fondo}')`;
+
+            bgs[capa].classList.add("on");
+
+            bgs[capa ^ 1].classList.remove("on");
+
+
+            // Actualiza el texto principal.
+            $("#resumen").textContent = n.resumen;
+
+
+            // Configura los botones.
+            $("#mas").href = "info.html?id=" + encodeURIComponent(n.id);
+
+            $("#consultar").href = wa(
+                `Hola! Quiero consultar por el ${n.titulo}.`
+            );
+
+
+            // Actualiza el selector del celular.
+            $("#sel").innerHTML = `
+                <span>${n.icono}</span>
+                ${n.nombre}
+                <em>▾</em>
+            `;
+
+
+            // Cierra el menú después de seleccionar.
+            $("#menu").classList.remove("open");
+
+
+            // Marca el domo seleccionado.
+            document.querySelectorAll("#menu .opts button")
+                .forEach(b => {
+                    b.classList.toggle(
+                        "on",
+                        b.dataset.id === n.id
+                    );
+                });
+
+        }
+
+        // Cierra el menú móvil al elegir un enlace.
+        document.querySelectorAll("nav a").forEach(a => {
+            a.addEventListener("click", () => {
+                $("nav").classList.remove("open");
+            });
+        });
+
+
+        /* ==========================================
+           INICIALIZACIÓN
+           Ejecuta estas funciones al cargar el sitio.
+           ========================================== */
+
+        seleccionar(NODOS[0]);
+
+
+    </script>
+
 </body>
 </html>
