@@ -3,71 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NEODOMOS | Ficha técnica</title>
-    <link rel="icon" href="img/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=2">
+    <title>NEODOME | Presentación del modelo</title>
+    <link rel="icon" href="img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css?v=5">
 </head>
 <body>
-
     <header id="site-header"></header>
-
-    <!-- Plantilla: se completa sola según el domo (info.html?id=oficina) -->
-    <main class="page on" id="info">
-        <div class="ib" id="i-banner">
-            <div><small>Ficha técnica</small><h1 id="i-titulo"></h1></div>
-        </div>
-
+    <main id="info">
+        <div class="ib" id="i-banner"><div><small>Presentación del modelo</small><h1 id="i-titulo"></h1></div></div>
         <div class="wrap">
             <div class="chips" id="i-chips"></div>
             <p class="lead" id="i-desc"></p>
 
-            <h3>Especificaciones técnicas</h3>
-            <div class="specs" id="i-specs"></div>
-
-            <div id="i-modw"><h3>Modelos y variantes</h3><div class="specs" id="i-mod"></div></div>
-
-            <h3>Qué incluye</h3>
+            <h3>Orientado a</h3>
             <ul class="inc" id="i-inc"></ul>
+
+            <h3>Datos técnicos</h3>
+            <div class="specs" id="i-specs"></div>
+            <p class="nota" id="i-nota">Datos técnicos en validación. Se publicarán una vez confirmados contra el plano del modelo.</p>
 
             <h3>Galería</h3>
             <div class="gal" id="i-gal"></div>
+            <p class="nota">Imágenes conceptuales. Diseño y equipamiento sujetos a configuración y validación técnica.</p>
 
             <div class="acts">
-                <a class="btn btn-v" id="i-wa" target="_blank" rel="noopener">Cotizar este domo</a>
-                <a class="btn btn-g" href="index.html">← Volver al inicio</a>
+                <a class="btn btn-v" id="i-wa" target="_blank" rel="noopener">Solicitar información</a>
+                <a class="btn btn-g" href="index.html#series">← Volver a las series</a>
             </div>
         </div>
     </main>
-
     <footer id="site-footer"></footer>
-
-    <script src="domos.js?v=2"></script>
+    <script src="domos.js?v=4"></script>
     <script>
         montarLayout("info");
-
-        // Lee el domo desde info.html?id=habitacional
-        const id = new URLSearchParams(location.search).get("id");
-        const n = NODOS.find(x => x.id === id) || NODOS[0];
-
-        document.title = `NEODOMOS | ${n.titulo}`;
-        $("#i-banner").style.backgroundImage = `linear-gradient(rgba(20,26,31,.2),rgba(20,26,31,.8)),url('${n.fondo}')`;
+        const n = NODOS.find(x => x.id === new URLSearchParams(location.search).get("id")) || NODOS[0];
+        document.title = `NEODOME | ${n.titulo}`;
+        $("#i-banner").style.backgroundImage = `linear-gradient(rgba(10,25,50,.35),rgba(10,25,50,.85)),url('${n.fondo}')`;
         $("#i-titulo").textContent = n.titulo;
         $("#i-desc").textContent = n.descripcion;
-        $("#i-chips").innerHTML = NODOS.map(x =>
-            `<a href="info.html?id=${encodeURIComponent(x.id)}" class="${x.id === n.id ? "on" : ""}">${icono(x.icono)} ${x.nombre}</a>`).join("");
-
-        // Siempre muestra todas las filas de SPECS_BASE; las que faltan dicen "A confirmar"
-        $("#i-specs").innerHTML = SPECS_BASE.map(l =>
-            `<div><small>${l}</small><b>${n.specs[l] || "A confirmar"}</b></div>`).join("");
-
-        // Modelos y variantes: solo aparece si el domo tiene "modelos" en domos.js
-        $("#i-modw").style.display = n.modelos ? "" : "none";
-        $("#i-mod").innerHTML = (n.modelos || []).map(m => `<div><small>${m[1]}</small><b>${m[0]}</b></div>`).join("");
-
-        $("#i-inc").innerHTML = n.incluye.map(i => `<li>${i}</li>`).join("");
+        $("#i-chips").innerHTML = NODOS.map(x => `<a href="info.html?id=${x.id}" class="${x.id === n.id ? "on" : ""}">${icono(x.icono)} ${x.nombre}</a>`).join("");
+        $("#i-inc").innerHTML = n.orientado.map(i => `<li>${i}</li>`).join("");
+        const sp = Object.entries(n.specs);
+        $("#i-specs").innerHTML = sp.map(([k, v]) => `<div><small>${k}</small><b>${v}</b></div>`).join("");
+        $("#i-nota").style.display = sp.length ? "none" : "";
         $("#i-gal").innerHTML = n.galeria.map(g => `<img src="${g}" alt="${n.titulo}">`).join("");
-        $("#i-wa").href = wa(`Hola! Quiero cotizar el ${n.titulo}.`);
+        $("#i-wa").href = wa(`Hola! Quiero información sobre la serie ${n.titulo} de NEODOME.`);
     </script>
 </body>
 </html>
