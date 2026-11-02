@@ -6,7 +6,7 @@
     <title>NEODOME | Contacto</title>
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=5">
+    <link rel="stylesheet" href="index.css?v=8">
 </head>
 <body class="contact-page">
     <header id="site-header"></header>
@@ -14,25 +14,19 @@
         <section class="cont">
             <div class="t"><span class="num">/</span><h2>Contacto</h2>
                 <p>Hablá con nuestro contacto comercial y recibí información. Elegí el canal que prefieras.</p></div>
-            <div class="ccards">
-                <a class="cc" id="c-wa" target="_blank" rel="noopener"><small>WhatsApp</small><b id="t-wa"></b></a>
-                <a class="cc" id="c-mail"><small>Email</small><b id="t-mail"></b></a>
-                <a class="cc" id="c-tel"><small>Teléfono</small><b id="t-tel"></b></a>
-                <a class="cc" id="c-ig" target="_blank" rel="noopener"><small>Instagram</small><b>NEODOME</b></a>
-                <div class="cc"><small>Ubicación</small><b id="t-zona"></b></div>
-            </div>
+            <div class="ccards" id="ccards"></div>
             <p class="who" id="who"></p>
         </section>
     </main>
     <footer id="site-footer"></footer>
-    <script src="domos.js?v=4"></script>
+    <script src="domos.js?v=8"></script>
     <script>
         montarLayout("contacto");
-        $("#c-wa").href = wa(CONFIG.mensajeGeneral); $("#t-wa").textContent = CONFIG.telefono;
-        $("#c-mail").href = "mailto:" + CONFIG.email; $("#t-mail").textContent = CONFIG.email;
-        $("#c-tel").href = "tel:+" + CONFIG.whatsapp; $("#t-tel").textContent = CONFIG.telefono;
-        $("#c-ig").href = CONFIG.instagram; $("#t-zona").textContent = CONFIG.zona;
-        $("#who").textContent = "Contacto comercial: " + CONFIG.contacto;
+        $("#ccards").innerHTML = CONFIG.contactos.map(c => `<div class="cc"><small>Contacto comercial</small><b>${c.nombre}</b>
+            <a href="https://wa.me/${c.whatsapp}?text=${encodeURIComponent(CONFIG.mensajeGeneral)}" target="_blank" rel="noopener">${c.telefono}</a>
+            <a href="mailto:${c.email}">${c.email}</a><span>${c.zona}</span></div>`).join("")
+            + `<a class="cc" href="${CONFIG.instagram}" target="_blank" rel="noopener"><small>Instagram</small><b>NEODOME</b></a>`;
+        $("#who").textContent = "Contactos comerciales: " + CONFIG.contactos.map(c => c.nombre).join(" y ");
     </script>
 </body>
 </html>

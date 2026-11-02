@@ -7,7 +7,7 @@
     <meta name="description" content="Cápsulas modulares inteligentes: diseño futurista, tecnología y confort. Viví el futuro. Sentite en casa.">
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=5">
+    <link rel="stylesheet" href="index.css?v=8">
 </head>
 <body>
     <header id="site-header"></header>
@@ -33,7 +33,7 @@
             <div class="sh"><span class="num">01 <i>/</i></span><div><h2>Quiénes somos</h2><p>Misión y visión</p></div></div>
             <div class="qs"><div><h3>Una nueva propuesta para la evolución del alojamiento modular.</h3>
                 <p>NEODOME nace para transformar la forma de construir, transportar y experimentar espacios habitables. Integramos diseño futurista, tecnología, confort y sustentabilidad en una plataforma modular.</p></div>
-                <img src="img/domo-blanco.jpg" alt="NEODOME"></div>
+                <img src="img/usos/stay.jpg" alt="NEODOME"></div>
             <div class="mv"><div><b>Misión</b><p>Desarrollar espacios modulares inteligentes que mejoren la calidad de vida de las personas.</p></div>
                 <div><b>Visión</b><p>Ser una marca global, escalable y replicable en distintos mercados.</p></div></div>
         </section>
@@ -47,14 +47,14 @@
 
 
         <section id="series">
-            <div class="sh"><span class="num">03 <i>/</i></span><div><h2>Modelos de la Serie NEODOME</h2><p>Una solución para cada necesidad.</p></div></div>
+            <div class="sh"><span class="num">03 <i>/</i></span><div><h2>Modelos de la Serie NEODOME</h2><p>8 modelos modulares equipados para diferentes necesidades.</p></div></div>
             <div class="serie-g" id="serie-g"></div>
         </section>
 
 
         <section id="usos" class="gris">
             <div class="sh"><span class="num">04 <i>/</i></span><div><h2>Usos y mercados</h2><p>Una plataforma adaptable a múltiples oportunidades.</p></div></div>
-            <div class="usos"><div class="uso"><img src="img/domo-disponible.jpg" alt="Glamping premium" style="object-position:30% 50%"><span>Glamping premium</span></div><div class="uso"><img src="img/domo-blanco.jpg" alt="Hoteles / Resorts" style="object-position:60% 50%"><span>Hoteles / Resorts</span></div><div class="uso"><img src="img/domo-ocupado.jpg" alt="Desarrollos turísticos" style="object-position:50% 50%"><span>Desarrollos turísticos</span></div><div class="uso"><img src="img/domo-disponible.jpg" alt="Alquiler temporario" style="object-position:30% 50%"><span>Alquiler temporario</span></div><div class="uso"><img src="img/domo-blanco.jpg" alt="Work / Oficinas" style="object-position:60% 50%"><span>Work / Oficinas</span></div><div class="uso"><img src="img/domo-ocupado.jpg" alt="Soluciones habitacionales" style="object-position:50% 50%"><span>Soluciones habitacionales</span></div></div>
+            <div class="usos"><div class="uso"><img src="img/usos/resort.jpg" alt="Glamping premium"><span>Glamping premium</span></div><div class="uso"><img src="img/usos/stay.jpg" alt="Hoteles / Resorts"><span>Hoteles / Resorts</span></div><div class="uso"><img src="img/portada.jpg" alt="Desarrollos turísticos"><span>Desarrollos turísticos</span></div><div class="uso"><img src="img/series/studio-con-bano-1.jpg" alt="Alquiler temporario"><span>Alquiler temporario</span></div><div class="uso"><img src="img/series/work-1.jpg" alt="Work / Oficinas"><span>Work / Oficinas</span></div><div class="uso"><img src="img/usos/studio.jpg" alt="Soluciones habitacionales"><span>Soluciones habitacionales</span></div></div>
         </section>
 
 
@@ -100,14 +100,14 @@
 
     <footer id="site-footer"></footer>
 
-    <script src="domos.js?v=4"></script>
+    <script src="domos.js?v=8"></script>
     <script>
         montarLayout("home");
         $("#cta-wa").href = wa(CONFIG.mensajeCotizar);
         const bgs = [$("#bg0"), $("#bg1")]; let capa = 0;
-        NODOS.forEach(n => { new Image().src = n.fondo; });
+        NODOS.forEach(n => { new Image().src = n.portada || n.fondo; });
 
-        $("#serie-g").innerHTML = NODOS.map((n, i) => `<a class="mod" href="info.html?id=${n.id}" style="--bg:url('${n.fondo}')"><b>0${i + 1}</b><h3>${n.nombre}</h3><p>${n.uso}</p></a>`).join("");
+        $("#serie-g").innerHTML = NODOS.map((n, i) => `<a class="mod" href="info.html?id=${n.id}" style="--bg:url('${n.portada || n.fondo}')"><b>0${i + 1}</b><h3>${n.nombre}</h3><p>${n.uso}</p></a>`).join("");
         document.querySelectorAll("[data-i]").forEach(e => e.innerHTML = icono(e.dataset.i));
 
         $("#menu").innerHTML = `<button class="sel" id="sel"></button><div class="opts">${NODOS.map(n =>
@@ -121,7 +121,7 @@
 
         function seleccionar(n) {
             capa ^= 1;
-            bgs[capa].style.backgroundImage = `url('${n.fondo}')`;
+            bgs[capa].style.backgroundImage = `url('${n.portada || n.fondo}')`;
             bgs[capa].classList.add("on"); bgs[capa ^ 1].classList.remove("on");
             $("#resumen").textContent = n.resumen;
             $("#mas").href = "info.html?id=" + encodeURIComponent(n.id);

@@ -6,7 +6,7 @@
     <title>NEODOME | Presentación del modelo</title>
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=5">
+    <link rel="stylesheet" href="index.css?v=8">
 </head>
 <body>
     <header id="site-header"></header>
@@ -34,7 +34,7 @@
         </div>
     </main>
     <footer id="site-footer"></footer>
-    <script src="domos.js?v=4"></script>
+    <script src="domos.js?v=8"></script>
     <script>
         montarLayout("info");
         const n = NODOS.find(x => x.id === new URLSearchParams(location.search).get("id")) || NODOS[0];
@@ -46,7 +46,7 @@
         $("#i-inc").innerHTML = n.orientado.map(i => `<li>${i}</li>`).join("");
         const sp = Object.entries(n.specs);
         $("#i-specs").innerHTML = sp.map(([k, v]) => `<div><small>${k}</small><b>${v}</b></div>`).join("");
-        $("#i-nota").style.display = sp.length ? "none" : "";
+        $("#i-nota").textContent = sp.length ? "Medidas y ambientes según los planos de la presentación; sujetos a validación técnica." : "Datos técnicos en validación.";
         $("#i-gal").innerHTML = n.galeria.map(g => `<img src="${g}" alt="${n.titulo}">`).join("");
         $("#i-wa").href = wa(`Hola! Quiero información sobre la serie ${n.titulo} de NEODOME.`);
     </script>

@@ -168,3 +168,6 @@ th.nd { background:var(--tq); color:#fff; } section .nota { max-width:1100px; ma
 @media (max-width:900px) { .tec, .qs { grid-template-columns:1fr; } .tec ul { grid-template-columns:1fr; } .pts { columns:1; } .sh .num { font-size:2.4rem; } }
 
 .hero-logo { display:block; width:min(340px,75%); height:auto; margin-bottom:24px; }
+
+/* Links dentro de las tarjetas de contacto */
+.cc a { color:inherit; text-decoration:underline; text-underline-offset:3px; } .cc a:hover { color:var(--tq); }
