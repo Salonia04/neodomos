@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NEODOME | Presentación del modelo</title>
+    <meta name="description" content="Presentación de la serie NEODOME: renders, planos y datos técnicos.">
+    <meta property="og:site_name" content="NEODOME"><meta property="og:image" content="https://neodome.com.ar/img/portada.jpg">
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css?v=12">
@@ -39,6 +41,8 @@
         montarLayout("info");
         const n = NODOS.find(x => x.id === new URLSearchParams(location.search).get("id")) || NODOS[0];
         document.title = `NEODOME | ${n.titulo}`;
+        $("meta[name=description]").content = `${n.titulo} · ${n.uso}. ${n.descripcion}`;
+        $("meta[property='og:image']").content = location.origin + "/" + n.fondo;
         $("#i-banner").style.setProperty("--img", `url('${n.fondo}')`);
         $("#i-titulo").textContent = n.titulo;
         $("#i-desc").textContent = n.descripcion;
