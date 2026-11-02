@@ -6,7 +6,7 @@
     <title>NEODOME | Presentación del modelo</title>
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=8">
+    <link rel="stylesheet" href="index.css?v=12">
 </head>
 <body>
     <header id="site-header"></header>
@@ -34,12 +34,12 @@
         </div>
     </main>
     <footer id="site-footer"></footer>
-    <script src="domos.js?v=8"></script>
+    <script src="domos.js?v=12"></script>
     <script>
         montarLayout("info");
         const n = NODOS.find(x => x.id === new URLSearchParams(location.search).get("id")) || NODOS[0];
         document.title = `NEODOME | ${n.titulo}`;
-        $("#i-banner").style.backgroundImage = `linear-gradient(rgba(10,25,50,.35),rgba(10,25,50,.85)),url('${n.fondo}')`;
+        $("#i-banner").style.setProperty("--img", `url('${n.fondo}')`);
         $("#i-titulo").textContent = n.titulo;
         $("#i-desc").textContent = n.descripcion;
         $("#i-chips").innerHTML = NODOS.map(x => `<a href="info.html?id=${x.id}" class="${x.id === n.id ? "on" : ""}">${icono(x.icono)} ${x.nombre}</a>`).join("");

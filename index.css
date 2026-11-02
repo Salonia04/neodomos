@@ -98,8 +98,13 @@ footer { background:var(--azul); color:#c4d5e8; border-top:3px solid var(--tq); 
 .fcopy { text-align:center; font-size:.75rem; padding:18px; border-top:1px solid rgba(255,255,255,.12); color:#8fa6c2; }
 
 /* Ficha de serie */
-.ib { min-height:300px; display:flex; align-items:flex-end; padding:40px clamp(18px,5vw,70px); background-size:cover; background-position:center; color:#fff;
+/* Banner de la ficha: degradé azul a la izquierda y foto a la derecha que se funde con el degradé.
+   La foto la pone info.html con la variable --img. Para cambiar cuánto ocupa la foto: width del ::before. */
+.ib { position:relative; isolation:isolate; overflow:hidden; min-height:300px; display:flex; align-items:flex-end; padding:40px clamp(18px,5vw,70px); color:#fff;
+  background:linear-gradient(115deg,var(--azul) 0%,var(--azul2) 50%,#1f5a9a 100%);
   clip-path:polygon(0 0,100% 0,100% calc(100% - 36px),calc(100% - 36px) 100%,0 100%); }
+.ib::before { content:""; position:absolute; top:0; right:0; bottom:0; width:62%; z-index:-1; background:var(--img) center/cover no-repeat;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 28%,#000 68%); mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 28%,#000 68%); }
 .ib small { color:var(--tq2); font-weight:700; letter-spacing:.14em; text-transform:uppercase; } .ib h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:800; }
 .wrap { max-width:960px; margin:0 auto; padding:40px 18px 70px; }
 .wrap h3 { color:var(--azul); font-weight:800; margin:34px 0 14px; padding-left:12px; border-left:4px solid var(--tq); }
@@ -124,6 +129,7 @@ a.cc:hover { background:var(--azul); color:#fff; } .cc small { color:var(--tq); 
 
 /* Celular */
 @media (max-width:900px) {
+  .ib { min-height:260px; } .ib::before { width:100%; -webkit-mask-image:linear-gradient(180deg,#000 0,transparent 85%); mask-image:linear-gradient(180deg,#000 0,transparent 85%); }
   .burger { display:block; }
   nav { display:none; position:absolute; top:var(--nav); left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--azul); padding:12px 18px 20px; }
   nav.open { display:flex; } nav .l { padding:14px 0; font-size:1rem; border-bottom:1px solid rgba(255,255,255,.1); } nav .btn { margin-top:14px; text-align:center; }
@@ -158,7 +164,9 @@ section.azul { background:var(--azul); color:#fff; } .azul .sh h2, .azul .num { 
 .tec ul { list-style:none; display:grid; grid-template-columns:repeat(2,1fr); gap:14px 22px; } .tec li { display:flex; gap:12px; font-size:.9rem; color:#dbe6f3; } .tec .ico { color:var(--tq2); font-size:1.5rem; flex:none; }
 .tec figure img { width:100%; display:block; clip-path:polygon(40px 0,100% 0,100% 100%,0 100%,0 40px); } .tec figcaption { font-size:.75rem; color:#8fa6c2; margin-top:8px; }
 .opo { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; max-width:1100px; margin:0 auto; }
-.opo > div { display:grid; grid-template-columns:auto 1fr; column-gap:16px; align-items:start; } .opo .ico { grid-row:span 2; font-size:1.7rem; color:#fff; background:var(--azul); padding:14px; box-sizing:content-box; border-radius:50%; width:1.7rem; height:1.7rem; }
+.opo > div { display:grid; grid-template-columns:auto 1fr; column-gap:16px; row-gap:4px; align-items:start; padding:24px; background:var(--claro); border-top:3px solid var(--tq); }
+.opo > div > i { grid-row:span 2; display:block; line-height:0; } .opo h3 { align-self:end; } .opo p { align-self:start; }
+.opo .ico { font-size:1.7rem; color:#fff; background:var(--azul); padding:14px; box-sizing:content-box; border-radius:50%; width:1.7rem; height:1.7rem; }
 .opo h3 { color:var(--azul); } .opo p { color:var(--gris); font-size:.9rem; }
 .tbl { max-width:1100px; margin:0 auto; overflow-x:auto; } table { width:100%; border-collapse:collapse; font-size:.9rem; background:#fff; }
 th, td { padding:12px 16px; text-align:left; border-bottom:1px solid #dde5ef; } th { background:var(--claro); color:var(--azul); } th.nd, td:last-child { background:#dff4f8; color:#0b6f80; font-weight:700; }

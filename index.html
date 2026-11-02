@@ -7,7 +7,7 @@
     <meta name="description" content="Cápsulas modulares inteligentes: diseño futurista, tecnología y confort. Viví el futuro. Sentite en casa.">
     <link rel="icon" href="img/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=8">
+    <link rel="stylesheet" href="index.css?v=12">
 </head>
 <body>
     <header id="site-header"></header>
@@ -100,14 +100,14 @@
 
     <footer id="site-footer"></footer>
 
-    <script src="domos.js?v=8"></script>
+    <script src="domos.js?v=12"></script>
     <script>
         montarLayout("home");
         $("#cta-wa").href = wa(CONFIG.mensajeCotizar);
         const bgs = [$("#bg0"), $("#bg1")]; let capa = 0;
-        NODOS.forEach(n => { new Image().src = n.portada || n.fondo; });
+        NODOS.forEach(n => { new Image().src = fondoPortada(n); new Image().src = n.fondo; });
 
-        $("#serie-g").innerHTML = NODOS.map((n, i) => `<a class="mod" href="info.html?id=${n.id}" style="--bg:url('${n.portada || n.fondo}')"><b>0${i + 1}</b><h3>${n.nombre}</h3><p>${n.uso}</p></a>`).join("");
+        $("#serie-g").innerHTML = NODOS.map((n, i) => `<a class="mod" href="info.html?id=${n.id}" style="--bg:url('${n.fondo}')"><b>0${i + 1}</b><h3>${n.nombre}</h3><p>${n.uso}</p></a>`).join("");
         document.querySelectorAll("[data-i]").forEach(e => e.innerHTML = icono(e.dataset.i));
 
         $("#menu").innerHTML = `<button class="sel" id="sel"></button><div class="opts">${NODOS.map(n =>
@@ -121,9 +121,9 @@
 
         function seleccionar(n) {
             capa ^= 1;
-            bgs[capa].style.backgroundImage = `url('${n.portada || n.fondo}')`;
+            bgs[capa].style.backgroundImage = `url('${fondoPortada(n)}')`;
             bgs[capa].classList.add("on"); bgs[capa ^ 1].classList.remove("on");
-            $("#resumen").textContent = n.resumen;
+            $("#resumen").textContent = n.resumen || CONFIG.mensajePortada;
             $("#mas").href = "info.html?id=" + encodeURIComponent(n.id);
             $("#consultar").href = wa(`Hola! Quiero información sobre la serie ${n.titulo} de NEODOME.`);
             $("#sel").innerHTML = `<span>${icono(n.icono)}</span>${n.nombre}<em>▾</em>`;
